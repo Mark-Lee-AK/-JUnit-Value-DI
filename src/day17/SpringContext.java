@@ -34,6 +34,7 @@ public class SpringContext {
 		// TODO Auto-generated method stub
 		File[] list = dir.listFiles();
 		if (list == null) {
+			
 			return;
 		}
 		for (File f : list) {
@@ -42,13 +43,7 @@ public class SpringContext {
 				if (n.endsWith(".class")) {//如果文件名后缀是.class
 					n = n.substring(0,n.length()-6);//把后缀去掉，留下类名
 					n = sb+"."+ n;//包名.类名
-					try {
-						// 创建实例,并放入map集合
-						Object obj = Class.forName(n).newInstance();
-						map.put(n, obj);//完整包名---->实例
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
+					handle(n);
 				}
 			} else {//f是文件夹
 				if (sb.length()!=0) {//第一层包不加电,后面的包名在前面连一个点
@@ -67,7 +62,18 @@ public class SpringContext {
 				sb.delete(index, sb.length());
 			}
 		}
+	}
 
+	private void handle(String n) throws Exception {
+
+		// 创建实例,并放入map集合
+		Class<?> c = Class.forName(n);
+		if (c.isAnnotationPresent(Component.class)||
+				c.isAnnotationPresent(Service.class)||
+				c.isAnnotationPresent(Controller.class)){
+			Object obj = c.newInstance();
+			map.put(n, obj);// 完整包名---->实例
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {

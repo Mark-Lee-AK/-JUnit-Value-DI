@@ -1,5 +1,6 @@
 package day17;
 
+@Component
 public class UserDao {
 	@Value ("${spring.datasource.driver}")
 	private String driver;
