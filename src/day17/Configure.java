@@ -48,9 +48,16 @@ public class Configure {
 			return null;
 		}
 	}
+	static {
+		try {
+			load();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) throws Exception {
-		load();
 		Map m = cfg.get("spring");
 		System.out.println(m);
 		Map m2 = (Map) m.get("datasource");

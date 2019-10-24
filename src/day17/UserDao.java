@@ -10,7 +10,7 @@ public class UserDao {
 	@Value ("${spring.datasource.url}")
 	private String url;
 	
-	private void test() {
+	void test() {
 		// TODO Auto-generated method stub
 		System.out.println("----------------------");
 		System.out.println(driver);
