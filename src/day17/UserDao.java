@@ -13,7 +13,7 @@ public class UserDao {
 	
 	void test() {
 		// TODO Auto-generated method stub
-		System.out.println("----------------------");
+		System.out.println("\n--UserDao--------------------");
 		System.out.println(driver);
 		System.out.println(username);
 		System.out.println(password);
